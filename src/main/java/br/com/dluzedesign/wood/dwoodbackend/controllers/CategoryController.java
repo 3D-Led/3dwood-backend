@@ -1,5 +1,6 @@
 package br.com.dluzedesign.wood.dwoodbackend.controllers;
 
+import br.com.dluzedesign.wood.dwoodbackend.dtos.CategoryResponseDTO;
 import br.com.dluzedesign.wood.dwoodbackend.models.Category;
 import br.com.dluzedesign.wood.dwoodbackend.services.CategoryService;
 import org.springframework.http.ResponseEntity;
@@ -19,7 +20,7 @@ public class CategoryController {
     }
 
     @GetMapping
-    ResponseEntity<List<Category>> getAll(){
+    ResponseEntity<List<CategoryResponseDTO>> getAll(){
         return ResponseEntity.ok(service.findAll());
     }
 }
