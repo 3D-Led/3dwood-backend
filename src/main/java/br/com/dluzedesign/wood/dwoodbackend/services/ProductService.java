@@ -37,6 +37,7 @@ public class ProductService {
                         product.getEan(),
                         product.getSize(),
                         product.getImgUrl(),
+                        product.getListImgs(),
                         repository.findFirstCategoryNameByProductId(product.getId())
                 ))
                 .orElseThrow(() -> new EntityNotFoundException("Produto não encontrado com ID: " + id));
