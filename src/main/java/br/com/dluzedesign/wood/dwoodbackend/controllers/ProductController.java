@@ -1,6 +1,7 @@
 package br.com.dluzedesign.wood.dwoodbackend.controllers;
 
 import br.com.dluzedesign.wood.dwoodbackend.dtos.ProductCategoryResponseDTO;
+import br.com.dluzedesign.wood.dwoodbackend.dtos.ProductResponseDTO;
 import br.com.dluzedesign.wood.dwoodbackend.models.Product;
 import br.com.dluzedesign.wood.dwoodbackend.services.ProductService;
 import org.springframework.http.ResponseEntity;
@@ -18,7 +19,7 @@ public class ProductController {
     }
 
     @GetMapping
-    ResponseEntity<List<Product>> getAll(){
+    ResponseEntity<List<ProductCategoryResponseDTO>> getAll(){
         return ResponseEntity.ok(service.getAll());
     }
     @GetMapping(value = "/category")
@@ -26,7 +27,7 @@ public class ProductController {
         return ResponseEntity.ok(service.getProductByCategory(category));
     }
     @GetMapping(value = "/{id}")
-    ResponseEntity<Product> getProductById(@PathVariable Long id){
+    ResponseEntity<ProductResponseDTO> getProductById(@PathVariable Long id){
         return ResponseEntity.ok(service.getProductById(id));
     }
 

@@ -12,4 +12,8 @@ import java.util.List;
 public interface ProductRespository extends JpaRepository<Product,Long> {
     @Query("SELECT p FROM Product p JOIN p.categories c WHERE LOWER(c.name) = LOWER(:nome)")
     List<Product> findByCategoria(@Param("nome") String nome);
+    @Query(value = "SELECT c.name FROM wood_category c " +
+            "JOIN tb_product_category pc ON c.id = pc.category_id " +
+            "WHERE pc.product_id = :productId LIMIT 1", nativeQuery = true)
+    String findFirstCategoryNameByProductId(@Param("productId") Long productId);
 }
