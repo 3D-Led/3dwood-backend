@@ -21,6 +21,5 @@ public class Category {
     private String name;
     private String imgCategoryUrl;
     @ManyToMany(mappedBy = "categories")
-    @JsonIgnore
     private Set<Product> products;
 }
