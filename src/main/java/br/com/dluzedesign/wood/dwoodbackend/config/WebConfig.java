@@ -20,7 +20,7 @@ public class WebConfig implements WebMvcConfigurer {
         registry.addMapping("/newsletter")
                 .allowedOrigins(corOrigin)
                 .allowedMethods("POST");
-        registry.addMapping("/products/*")
+        registry.addMapping("/products/**")
                 .allowedOrigins(corOrigin)
                 .allowedMethods("GET");
     }

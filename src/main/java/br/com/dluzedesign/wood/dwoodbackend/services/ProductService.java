@@ -32,6 +32,7 @@ public class ProductService {
     public ProductResponseDTO getProductById(Long id) {
         return repository.findById(id)
                 .map(product -> new ProductResponseDTO(
+                        product.getDescription(),
                         product.getName(),
                         product.getSku(),
                         product.getEan(),

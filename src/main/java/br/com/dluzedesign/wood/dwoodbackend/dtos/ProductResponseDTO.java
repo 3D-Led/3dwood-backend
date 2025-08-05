@@ -2,8 +2,10 @@ package br.com.dluzedesign.wood.dwoodbackend.dtos;
 
 import java.util.List;
 
-public record ProductResponseDTO(String name,
-                                 Integer sku,
+public record ProductResponseDTO(String descriptions,
+                                String name,
+
+                                 Long sku,
                                  Long ean,
                                  String size,
                                  String imgUrl,

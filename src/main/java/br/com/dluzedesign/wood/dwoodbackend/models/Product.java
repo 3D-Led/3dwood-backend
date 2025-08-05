@@ -17,9 +17,12 @@ public class Product {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @EqualsAndHashCode.Include
     private Long id;
+    @Column(name = "description", columnDefinition = "TEXT")
+    private String description;
     private String name;
-    private Integer sku;
+    private Long sku;
     private Long ean;
+    @Column(name = "size", columnDefinition = "TEXT")
     private String size;
     private String imgUrl;
     @ElementCollection
