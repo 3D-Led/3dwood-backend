@@ -1,5 +1,6 @@
 package br.com.dluzedesign.wood.dwoodbackend.models;
 
+import br.com.dluzedesign.wood.dwoodbackend.models.enums.BannerType;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Data;
@@ -18,4 +19,6 @@ public class Banner {
     @EqualsAndHashCode.Include
     private Long id;
     private String imgUrl;
+    @Enumerated(EnumType.STRING)
+    private BannerType type;
 }

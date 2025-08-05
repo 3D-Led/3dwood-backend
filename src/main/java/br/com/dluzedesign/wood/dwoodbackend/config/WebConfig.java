@@ -11,7 +11,7 @@ public class WebConfig implements WebMvcConfigurer {
     private String corOrigin;
     @Override
     public void addCorsMappings(CorsRegistry registry) {
-        registry.addMapping("/banner")
+        registry.addMapping("/banner/*")
                 .allowedOrigins(corOrigin)
                 .allowedMethods("GET");
         registry.addMapping("/category")
