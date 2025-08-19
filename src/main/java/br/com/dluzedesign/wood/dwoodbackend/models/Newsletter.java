@@ -1,6 +1,6 @@
 package br.com.dluzedesign.wood.dwoodbackend.models;
 
-import br.com.dluzedesign.wood.dwoodbackend.dtos.NewsLetterRequestDTO;
+import br.com.dluzedesign.wood.dwoodbackend.dtos.request.NewsLetterRequestDTO;
 import jakarta.persistence.*;
 import jakarta.validation.constraints.NotEmpty;
 import lombok.AllArgsConstructor;

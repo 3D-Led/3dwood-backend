@@ -1,4 +1,4 @@
-package br.com.dluzedesign.wood.dwoodbackend.dtos;
+package br.com.dluzedesign.wood.dwoodbackend.dtos.response;
 
 import java.util.List;
 

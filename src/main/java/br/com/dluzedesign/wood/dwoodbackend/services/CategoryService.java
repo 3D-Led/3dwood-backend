@@ -1,12 +1,10 @@
 package br.com.dluzedesign.wood.dwoodbackend.services;
 
-import br.com.dluzedesign.wood.dwoodbackend.dtos.CategoryResponseDTO;
+import br.com.dluzedesign.wood.dwoodbackend.dtos.response.CategoryResponseDTO;
 import br.com.dluzedesign.wood.dwoodbackend.models.Category;
-import br.com.dluzedesign.wood.dwoodbackend.models.Product;
 import br.com.dluzedesign.wood.dwoodbackend.repositories.CategoryRepository;
 import org.springframework.stereotype.Service;
 
-import java.io.Serial;
 import java.util.Comparator;
 import java.util.List;
 import java.util.stream.Collectors;

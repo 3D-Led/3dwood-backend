@@ -1,9 +1,8 @@
 package br.com.dluzedesign.wood.dwoodbackend.models;
 
-import br.com.dluzedesign.wood.dwoodbackend.dtos.BannerRequestDTO;
+import br.com.dluzedesign.wood.dwoodbackend.dtos.request.BannerRequestDTO;
 import br.com.dluzedesign.wood.dwoodbackend.models.enums.BannerType;
 import jakarta.persistence.*;
-import jakarta.validation.constraints.NotEmpty;
 import jakarta.validation.constraints.NotNull;
 import lombok.AllArgsConstructor;
 import lombok.Data;

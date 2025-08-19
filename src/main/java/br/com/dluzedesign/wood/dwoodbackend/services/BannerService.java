@@ -1,7 +1,7 @@
 package br.com.dluzedesign.wood.dwoodbackend.services;
 
-import br.com.dluzedesign.wood.dwoodbackend.dtos.BannerRequestDTO;
-import br.com.dluzedesign.wood.dwoodbackend.dtos.BannerResponseDTO;
+import br.com.dluzedesign.wood.dwoodbackend.dtos.request.BannerRequestDTO;
+import br.com.dluzedesign.wood.dwoodbackend.dtos.response.BannerResponseDTO;
 import br.com.dluzedesign.wood.dwoodbackend.models.Banner;
 import br.com.dluzedesign.wood.dwoodbackend.models.enums.BannerType;
 import br.com.dluzedesign.wood.dwoodbackend.repositories.BannerRepository;

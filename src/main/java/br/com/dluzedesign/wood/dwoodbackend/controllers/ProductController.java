@@ -1,8 +1,7 @@
 package br.com.dluzedesign.wood.dwoodbackend.controllers;
 
-import br.com.dluzedesign.wood.dwoodbackend.dtos.ProductCategoryResponseDTO;
-import br.com.dluzedesign.wood.dwoodbackend.dtos.ProductResponseDTO;
-import br.com.dluzedesign.wood.dwoodbackend.models.Product;
+import br.com.dluzedesign.wood.dwoodbackend.dtos.response.ProductCategoryResponseDTO;
+import br.com.dluzedesign.wood.dwoodbackend.dtos.response.ProductResponseDTO;
 import br.com.dluzedesign.wood.dwoodbackend.services.ProductService;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;

@@ -1,15 +1,12 @@
 package br.com.dluzedesign.wood.dwoodbackend.services;
 
-import br.com.dluzedesign.wood.dwoodbackend.dtos.ProductCategoryResponseDTO;
-import br.com.dluzedesign.wood.dwoodbackend.dtos.ProductResponseDTO;
-import br.com.dluzedesign.wood.dwoodbackend.models.Category;
-import br.com.dluzedesign.wood.dwoodbackend.models.Product;
+import br.com.dluzedesign.wood.dwoodbackend.dtos.response.ProductCategoryResponseDTO;
+import br.com.dluzedesign.wood.dwoodbackend.dtos.response.ProductResponseDTO;
 import br.com.dluzedesign.wood.dwoodbackend.repositories.ProductRespository;
 import jakarta.persistence.EntityNotFoundException;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
-import java.util.stream.Collectors;
 
 @Service
 public class ProductService {

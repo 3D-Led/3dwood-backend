@@ -1,6 +1,6 @@
 package br.com.dluzedesign.wood.dwoodbackend.controllers;
 
-import br.com.dluzedesign.wood.dwoodbackend.dtos.NewsLetterRequestDTO;
+import br.com.dluzedesign.wood.dwoodbackend.dtos.request.NewsLetterRequestDTO;
 import br.com.dluzedesign.wood.dwoodbackend.models.Newsletter;
 import br.com.dluzedesign.wood.dwoodbackend.services.NewsletterService;
 import jakarta.validation.Valid;

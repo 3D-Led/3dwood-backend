@@ -1,7 +1,6 @@
 package br.com.dluzedesign.wood.dwoodbackend.controllers;
 
-import br.com.dluzedesign.wood.dwoodbackend.dtos.CategoryResponseDTO;
-import br.com.dluzedesign.wood.dwoodbackend.models.Category;
+import br.com.dluzedesign.wood.dwoodbackend.dtos.response.CategoryResponseDTO;
 import br.com.dluzedesign.wood.dwoodbackend.services.CategoryService;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;

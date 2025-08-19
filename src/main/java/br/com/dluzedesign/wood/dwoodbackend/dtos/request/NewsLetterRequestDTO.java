@@ -1,4 +1,4 @@
-package br.com.dluzedesign.wood.dwoodbackend.dtos;
+package br.com.dluzedesign.wood.dwoodbackend.dtos.request;
 
 import jakarta.validation.constraints.Email;
 import jakarta.validation.constraints.NotBlank;
