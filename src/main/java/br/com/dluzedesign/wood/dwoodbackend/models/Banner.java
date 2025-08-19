@@ -1,7 +1,9 @@
 package br.com.dluzedesign.wood.dwoodbackend.models;
 
+import br.com.dluzedesign.wood.dwoodbackend.dtos.BannerRequestDTO;
 import br.com.dluzedesign.wood.dwoodbackend.models.enums.BannerType;
 import jakarta.persistence.*;
+import jakarta.validation.constraints.NotEmpty;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
@@ -18,7 +20,16 @@ public class Banner {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @EqualsAndHashCode.Include
     private Long id;
+
     private String imgUrl;
+
     @Enumerated(EnumType.STRING)
+    @NotEmpty
     private BannerType type;
+
+    public Banner(BannerRequestDTO banner) {
+        this.id = banner.id();
+        this.imgUrl = banner.imgUrl();
+        this.type = banner.type();
+    }
 }
