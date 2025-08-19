@@ -2,6 +2,7 @@ package br.com.dluzedesign.wood.dwoodbackend.models;
 
 import br.com.dluzedesign.wood.dwoodbackend.dtos.NewsLetterRequestDTO;
 import jakarta.persistence.*;
+import jakarta.validation.constraints.NotEmpty;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
@@ -18,7 +19,12 @@ public class Newsletter {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @EqualsAndHashCode.Include
     private Long id;
+
+    @NotEmpty
     private String name;
+
+    @NotEmpty
+    @Column(unique = true)
     private String email;
 
 
