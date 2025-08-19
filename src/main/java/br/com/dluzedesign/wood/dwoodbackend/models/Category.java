@@ -2,6 +2,7 @@ package br.com.dluzedesign.wood.dwoodbackend.models;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
+import jakarta.validation.constraints.NotEmpty;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
@@ -19,9 +20,19 @@ public class Category {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @EqualsAndHashCode.Include
     private Long id;
+
+    @Column(unique = true)
+    @NotEmpty
     private String name;
+
     private String imgCategoryUrl;
+
     @ManyToMany(mappedBy = "categories")
     @JsonIgnore
     private Set<Product> products;
+
+    public Category(String name, String imgCategoryUrl) {
+        this.name = name;
+        this.imgCategoryUrl = imgCategoryUrl;
+    }
 }
