@@ -1,4 +1,6 @@
 package br.com.dluzedesign.wood.dwoodbackend.dtos;
 
-public record BannerResponseDTO(String imgUrl) {
+import br.com.dluzedesign.wood.dwoodbackend.models.enums.BannerType;
+
+public record BannerResponseDTO(Long id, String imgUrl, BannerType type) {
 }

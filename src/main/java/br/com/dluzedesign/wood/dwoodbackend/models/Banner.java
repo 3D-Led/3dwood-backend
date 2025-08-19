@@ -4,6 +4,7 @@ import br.com.dluzedesign.wood.dwoodbackend.dtos.BannerRequestDTO;
 import br.com.dluzedesign.wood.dwoodbackend.models.enums.BannerType;
 import jakarta.persistence.*;
 import jakarta.validation.constraints.NotEmpty;
+import jakarta.validation.constraints.NotNull;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
@@ -24,7 +25,7 @@ public class Banner {
     private String imgUrl;
 
     @Enumerated(EnumType.STRING)
-    @NotEmpty
+    @NotNull
     private BannerType type;
 
     public Banner(BannerRequestDTO banner) {

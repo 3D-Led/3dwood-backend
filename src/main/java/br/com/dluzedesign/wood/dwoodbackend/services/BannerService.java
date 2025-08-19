@@ -14,24 +14,32 @@ import java.util.List;
 public class BannerService {
     private BannerRepository repository;
     public List<BannerResponseDTO> getAllByType(BannerType type){
+        if (!repository.existsByType(type)){
+            throw new IllegalArgumentException("Typo " + type + " não encontrado!");
+        }
         return repository.findAll().stream()
                 .filter(b->b.getType().equals(type))
-                .map(b-> new BannerResponseDTO(b.getImgUrl()))
+                .map(b-> new BannerResponseDTO(b.getId(),b.getImgUrl(),b.getType()))
                 .toList();
     }
-    public boolean insert (BannerRequestDTO banner) {
-        var result = false;
-        if(banner.id() == null && banner.type() == BannerType.CARROUSEL){
-            repository.save(new Banner(banner));
-            result = true;
+    public BannerResponseDTO insert(BannerRequestDTO request) {
+        Banner banner;
+        if (request.id() != null) {
+            banner = repository.findById(request.id())
+                    .orElseThrow(() -> new IllegalArgumentException("Banner não encontrado para id: " + request.id()));
+
+            banner.setImgUrl(request.imgUrl());
         } else {
-            var olddata = repository.findById(banner.id()).get();
-            olddata.setImgUrl(banner.imgUrl());
-            repository.save(olddata);
-            result = true;
+            if (request.type() != BannerType.CARROUSEL) {
+                throw new IllegalArgumentException("Somente banners do tipo CARROUSEL podem ser inseridos.");
+            }
+            banner = new Banner(request);
         }
-        return result;
+        Banner saved = repository.save(banner);
+        return new BannerResponseDTO(
+                saved.getId(),
+                saved.getImgUrl(),
+                saved.getType()
+        );
     }
-
-
 }
