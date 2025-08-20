@@ -27,10 +27,10 @@ public class CategoryService {
     }
     public CategoryResponseDTO findOne(Long id) {
         var category = repository.findById(id).orElseThrow(() -> new IllegalArgumentException("Id: " + id + "não encontrado;"));
-        return new CategoryResponseDTO(category.getId(), category.getName(), category.getName());
+        return new CategoryResponseDTO(category.getId(), category.getName(), category.getImgCategoryUrl());
     }
     public CategoryResponseDTO insert(CategoryRequestDTO request) {
-        if (!repository.existsByName(request.name())) {
+        if (repository.existsByName(request.name())) {
             throw new IllegalArgumentException(request.name() + "já existe outra categoria com esse nome!");
         }
         var newCategory = repository.save(new Category(request.name(), request.imgCategoryUrl()));
@@ -40,7 +40,7 @@ public class CategoryService {
         var oldData = repository.findById(id).orElseThrow(()-> new IllegalArgumentException("Id: " + id + "não encontrado!"));
         oldData.setImgCategoryUrl(request.imgCategoryUrl());
         repository.save(oldData);
-        return new CategoryResponseDTO(oldData.getId(), oldData.getName(), oldData.getName());
+        return new CategoryResponseDTO(oldData.getId(), oldData.getName(), oldData.getImgCategoryUrl());
     }
 
 }
