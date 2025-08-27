@@ -23,7 +23,7 @@ public class NewsletterController {
     public ResponseEntity<?> insert(@RequestBody @Valid NewsLetterRequestDTO dto) {
         try {
             Newsletter saved = service.insert(dto);
-            return ResponseEntity.status(HttpStatus.CREATED).body(Map.of(
+            return ResponseEntity.status(HttpStatus.OK).body(Map.of(
                     "message", saved.getName() +": Inscrição realizada com sucesso!"
             ));
         } catch (Exception e) {

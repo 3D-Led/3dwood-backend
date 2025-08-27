@@ -11,9 +11,7 @@ import org.springframework.stereotype.Service;
 public class NewsletterService {
     private final NewsletterRepository repository;
     public Newsletter insert(NewsLetterRequestDTO dto) {
-        if (!repository.existsByEmail(dto.email())){
-            return repository.save(new Newsletter(dto));
-        }
-        return null;
+        return repository.findByEmail(dto.email())
+                .orElseGet(()-> repository.save(new Newsletter(dto)));
     }
 }

@@ -3,10 +3,7 @@ package br.com.dluzedesign.wood.dwoodbackend.models;
 import br.com.dluzedesign.wood.dwoodbackend.dtos.request.NewsLetterRequestDTO;
 import jakarta.persistence.*;
 import jakarta.validation.constraints.NotEmpty;
-import lombok.AllArgsConstructor;
-import lombok.Data;
-import lombok.EqualsAndHashCode;
-import lombok.NoArgsConstructor;
+import lombok.*;
 
 @Entity
 @Table(name = "WOOD_LEEDS")
