@@ -4,7 +4,7 @@ import br.com.dluzedesign.wood.dwoodbackend.dtos.request.CategoryRequestDTO;
 import br.com.dluzedesign.wood.dwoodbackend.dtos.response.CategoryResponseDTO;
 import br.com.dluzedesign.wood.dwoodbackend.models.Category;
 import br.com.dluzedesign.wood.dwoodbackend.repositories.CategoryRepository;
-import lombok.AllArgsConstructor;
+import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
 import java.util.Comparator;
@@ -12,9 +12,9 @@ import java.util.List;
 import java.util.stream.Collectors;
 
 @Service
-@AllArgsConstructor
+@RequiredArgsConstructor
 public class CategoryService {
-    private CategoryRepository repository;
+    private final CategoryRepository repository;
     public List<CategoryResponseDTO> findAll() {
         List<Category> list = repository.findAll()
                 .stream()

@@ -5,14 +5,14 @@ import br.com.dluzedesign.wood.dwoodbackend.dtos.response.BannerResponseDTO;
 import br.com.dluzedesign.wood.dwoodbackend.models.Banner;
 import br.com.dluzedesign.wood.dwoodbackend.models.enums.BannerType;
 import br.com.dluzedesign.wood.dwoodbackend.repositories.BannerRepository;
-import lombok.AllArgsConstructor;
+import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
 @Service
-@AllArgsConstructor
+@RequiredArgsConstructor
 public class BannerService {
-    private BannerRepository repository;
+    private final BannerRepository repository;
     public List<BannerResponseDTO> getAllByType(BannerType type){
         if (!repository.existsByType(type)){
             throw new IllegalArgumentException("Typo " + type + " não encontrado!");

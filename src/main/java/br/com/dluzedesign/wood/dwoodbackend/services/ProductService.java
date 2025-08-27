@@ -8,7 +8,7 @@ import br.com.dluzedesign.wood.dwoodbackend.models.Product;
 import br.com.dluzedesign.wood.dwoodbackend.repositories.CategoryRepository;
 import br.com.dluzedesign.wood.dwoodbackend.repositories.ProductRespository;
 import jakarta.persistence.EntityNotFoundException;
-import lombok.AllArgsConstructor;
+import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 import org.springframework.util.StringUtils;
 
@@ -16,10 +16,10 @@ import java.util.List;
 import java.util.Set;
 
 @Service
-@AllArgsConstructor
+@RequiredArgsConstructor
 public class ProductService {
-    private ProductRespository repository;
-    private CategoryRepository categoryRepository;
+    private final ProductRespository repository;
+    private final CategoryRepository categoryRepository;
     public List<ProductCategoryResponseDTO> getAll(){
         var list =  repository.findAll();
         return list.stream()

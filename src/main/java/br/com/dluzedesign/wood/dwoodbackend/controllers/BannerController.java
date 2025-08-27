@@ -6,6 +6,7 @@ import br.com.dluzedesign.wood.dwoodbackend.models.enums.BannerType;
 import br.com.dluzedesign.wood.dwoodbackend.services.BannerService;
 import jakarta.validation.Valid;
 import lombok.AllArgsConstructor;
+import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
@@ -13,9 +14,9 @@ import java.util.List;
 
 @RestController
 @RequestMapping(value = "/banner")
-@AllArgsConstructor
+@RequiredArgsConstructor
 public class BannerController {
-    private BannerService service;
+    private final BannerService service;
     @GetMapping("/{type}")
     ResponseEntity<List<BannerResponseDTO>> getAll(@PathVariable BannerType type) {
         return ResponseEntity.ok(service.getAllByType(type));

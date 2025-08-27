@@ -4,7 +4,7 @@ import br.com.dluzedesign.wood.dwoodbackend.dtos.request.CategoryRequestDTO;
 import br.com.dluzedesign.wood.dwoodbackend.dtos.response.CategoryResponseDTO;
 import br.com.dluzedesign.wood.dwoodbackend.services.CategoryService;
 import jakarta.validation.Valid;
-import lombok.AllArgsConstructor;
+import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -13,9 +13,9 @@ import java.util.List;
 
 @RestController
 @RequestMapping(value = "/category")
-@AllArgsConstructor
+@RequiredArgsConstructor
 public class CategoryController {
-    private CategoryService service;
+    private final CategoryService service;
     @GetMapping
     ResponseEntity<List<CategoryResponseDTO>> getAll(){
         return ResponseEntity.status(HttpStatus.OK).body(service.findAll());

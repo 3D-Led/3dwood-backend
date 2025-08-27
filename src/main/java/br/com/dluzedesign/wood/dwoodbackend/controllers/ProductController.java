@@ -4,6 +4,7 @@ import br.com.dluzedesign.wood.dwoodbackend.dtos.request.ProductRequestDTO;
 import br.com.dluzedesign.wood.dwoodbackend.dtos.response.ProductCategoryResponseDTO;
 import br.com.dluzedesign.wood.dwoodbackend.dtos.response.ProductResponseDTO;
 import br.com.dluzedesign.wood.dwoodbackend.services.ProductService;
+import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -12,12 +13,10 @@ import java.util.List;
 
 @RestController
 @RequestMapping(value = "/products")
+@RequiredArgsConstructor
 public class ProductController {
     private final ProductService service;
 
-    public ProductController(ProductService service) {
-        this.service = service;
-    }
 
     @GetMapping
     ResponseEntity<List<ProductCategoryResponseDTO>> getAll(){
