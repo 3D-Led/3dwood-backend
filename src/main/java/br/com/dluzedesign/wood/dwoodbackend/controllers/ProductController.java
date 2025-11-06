@@ -3,7 +3,8 @@ package br.com.dluzedesign.wood.dwoodbackend.controllers;
 import br.com.dluzedesign.wood.dwoodbackend.dtos.request.ProductRequestDTO;
 import br.com.dluzedesign.wood.dwoodbackend.dtos.response.ProductCategoryResponseDTO;
 import br.com.dluzedesign.wood.dwoodbackend.dtos.response.ProductResponseDTO;
-import br.com.dluzedesign.wood.dwoodbackend.services.ProductService;
+import br.com.dluzedesign.wood.dwoodbackend.services.product.ProductQueryService;
+import br.com.dluzedesign.wood.dwoodbackend.services.product.ProductService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -16,19 +17,20 @@ import java.util.List;
 @RequiredArgsConstructor
 public class ProductController {
     private final ProductService service;
+    private final ProductQueryService queryService;
 
 
     @GetMapping
     ResponseEntity<List<ProductCategoryResponseDTO>> getAll(){
-        return ResponseEntity.ok(service.getAll());
+        return ResponseEntity.ok(queryService.getAll());
     }
     @GetMapping(value = "/category")
     ResponseEntity<List<ProductCategoryResponseDTO>> getProductByCategory(@RequestParam String category){
-        return ResponseEntity.ok(service.getProductByCategory(category));
+        return ResponseEntity.ok(queryService.getProductByCategory(category));
     }
     @GetMapping(value = "/{id}")
     ResponseEntity<ProductResponseDTO> getProductById(@PathVariable Long id){
-        return ResponseEntity.ok(service.getProductById(id));
+        return ResponseEntity.ok(queryService.getProductById(id));
     }
     @PostMapping
     ResponseEntity<ProductResponseDTO> insert(@RequestBody ProductRequestDTO request) {
