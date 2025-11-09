@@ -1,6 +1,8 @@
 package br.com.dluzedesign.wood.dwoodbackend.repositories;
 
 import br.com.dluzedesign.wood.dwoodbackend.models.Product;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.query.Param;
@@ -16,4 +18,6 @@ public interface ProductRespository extends JpaRepository<Product,Long> {
             "JOIN tb_product_category pc ON c.id = pc.category_id " +
             "WHERE pc.product_id = :productId LIMIT 1", nativeQuery = true)
     String findFirstCategoryNameByProductId(@Param("productId") Long productId);
+
+    Page<Product> findAll(Pageable pageable);
 }

@@ -7,6 +7,7 @@ import br.com.dluzedesign.wood.dwoodbackend.mapper.ProductMapper;
 import br.com.dluzedesign.wood.dwoodbackend.repositories.CategoryRepository;
 import br.com.dluzedesign.wood.dwoodbackend.repositories.ProductRespository;
 import lombok.RequiredArgsConstructor;
+import org.springframework.data.domain.PageRequest;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -22,8 +23,8 @@ public class ProductQueryService implements IProductQueryService {
     private final CategoryRepository categoryRepository;
     private final ProductMapper mapper;
     @Override
-    public List<ProductCategoryResponseDTO> getAll(){
-        var list =  repository.findAll();
+    public List<ProductCategoryResponseDTO> getAll(int page, int numbersItems){
+        var list =  repository.findAll(PageRequest.of(page,numbersItems));
         return list.stream()
                 .map(mapper::toProductCategoryResponse)
                 .collect(Collectors.toList());
