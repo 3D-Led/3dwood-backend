@@ -13,7 +13,7 @@ import org.springframework.web.bind.annotation.*;
 import java.util.List;
 
 @RestController
-@RequestMapping(value = "/products")
+@RequestMapping(value = "${api.prefix}/products")
 @RequiredArgsConstructor
 public class ProductController {
     private final ProductService service;

@@ -15,7 +15,7 @@ import org.springframework.web.bind.annotation.RestController;
 import java.util.Map;
 
 @RestController
-@RequestMapping(value = "/newsletter")
+@RequestMapping(value = "${api.prefix}/newsletter")
 @RequiredArgsConstructor
 public class NewsletterController {
     private final  NewsletterService service;

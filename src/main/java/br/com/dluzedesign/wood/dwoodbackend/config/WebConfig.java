@@ -9,18 +9,20 @@ import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
 public class WebConfig implements WebMvcConfigurer {
     @Value("${cors.origin}")
     private String corOrigin;
+    @Value("${api.prefix}")
+    private String apiPrefix;
     @Override
     public void addCorsMappings(CorsRegistry registry) {
-        registry.addMapping("/banner/*")
+        registry.addMapping(apiPrefix + "/banner/*")
                 .allowedOrigins(corOrigin)
                 .allowedMethods("GET");
-        registry.addMapping("/category")
+        registry.addMapping(apiPrefix + "/category")
                 .allowedOrigins(corOrigin)
                 .allowedMethods("GET");
-        registry.addMapping("/newsletter")
+        registry.addMapping(apiPrefix + "/newsletter")
                 .allowedOrigins(corOrigin)
                 .allowedMethods("POST");
-        registry.addMapping("/products/**")
+        registry.addMapping(apiPrefix + "/products/**")
                 .allowedOrigins(corOrigin)
                 .allowedMethods("GET");
     }

@@ -14,7 +14,7 @@ import org.springframework.web.bind.annotation.*;
 import java.util.List;
 
 @RestController
-@RequestMapping(value = "/category")
+@RequestMapping(value = "${api.prefix}/category")
 @RequiredArgsConstructor
 @Slf4j
 public class CategoryController {

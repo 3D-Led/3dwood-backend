@@ -13,7 +13,7 @@ import org.springframework.web.bind.annotation.*;
 import java.util.List;
 
 @RestController
-@RequestMapping(value = "/banner")
+@RequestMapping(value = "${api.prefix}/banner")
 @RequiredArgsConstructor
 public class BannerController {
     private final BannerService service;
