@@ -4,7 +4,7 @@ import jakarta.validation.constraints.NotBlank;
 
 import java.util.List;
 
-public record ProductRequestDTO(String descriptions,
+public record ProductRequestDTO(String description,
                                 @NotBlank String name,
                                 Long sku,
                                 Long ean,

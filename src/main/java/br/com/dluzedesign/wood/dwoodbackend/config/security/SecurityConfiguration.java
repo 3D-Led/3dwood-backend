@@ -28,7 +28,7 @@ public class SecurityConfiguration {
 
     private static final String[] PUBLIC_GET = {
             "/banner/*",
-            "/category/*",
+            "/category/**",
             "/products/**"
     };
 
