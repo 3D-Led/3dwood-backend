@@ -21,8 +21,9 @@ public class ProductController {
 
 
     @GetMapping
-    ResponseEntity<List<ProductCategoryResponseDTO>> getAll(){
-        return ResponseEntity.ok(queryService.getAll());
+    ResponseEntity<List<ProductCategoryResponseDTO>> getAll(@RequestParam int page,
+                                                            @RequestParam int numbersItems){
+        return ResponseEntity.ok(queryService.getAll(page, numbersItems));
     }
     @GetMapping(value = "/category")
     ResponseEntity<List<ProductCategoryResponseDTO>> getProductByCategory(@RequestParam String category){

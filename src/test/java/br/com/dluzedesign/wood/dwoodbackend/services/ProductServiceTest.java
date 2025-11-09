@@ -5,6 +5,8 @@ import br.com.dluzedesign.wood.dwoodbackend.models.Category;
 import br.com.dluzedesign.wood.dwoodbackend.models.Product;
 import br.com.dluzedesign.wood.dwoodbackend.repositories.CategoryRepository;
 import br.com.dluzedesign.wood.dwoodbackend.repositories.ProductRespository;
+import br.com.dluzedesign.wood.dwoodbackend.services.product.ProductQueryService;
+import br.com.dluzedesign.wood.dwoodbackend.services.product.ProductService;
 import jakarta.persistence.EntityNotFoundException;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
@@ -25,6 +27,8 @@ import static org.mockito.Mockito.when;
 class ProductServiceTest {
     @InjectMocks
     private ProductService service;
+    @InjectMocks
+    private ProductQueryService queryService;
     @Mock
     private ProductRespository repository;
     @Mock
@@ -37,7 +41,7 @@ class ProductServiceTest {
         );
         when(repository.findAll()).thenReturn(products);
 
-        var sut = service.getAll();
+        var sut = queryService.getAll();
         assertEquals(1, sut.size());
         assertEquals(products.get(0).getId(), sut.get(0).id());
         assertEquals(products.get(0).getName(), sut.get(0).name());
@@ -54,10 +58,10 @@ class ProductServiceTest {
                         "M", "http://image.com/img.png", List.of("img1"), Set.of(category))
         );
 
-        when(categoryRepository.existsByName(categoryName)).thenReturn(true);
+        when(categoryRepository.findByName(categoryName)).thenReturn(Optional.of(category));
         when(repository.findByCategoria(categoryName)).thenReturn(products);
 
-        var sut = service.getProductByCategory(categoryName);
+        var sut = queryService.getProductByCategory(categoryName);
         assertEquals(1, sut.size());
         assertEquals(products.get(0).getId(), sut.get(0).id());
         assertEquals(products.get(0).getName(), sut.get(0).name());
@@ -66,9 +70,9 @@ class ProductServiceTest {
 
     @Test
     void getProductByCategory_WithInvalidCategory_ThrowsException() {
-        when(categoryRepository.existsByName("invalid")).thenReturn(false);
+        when(categoryRepository.findByName("invalid")).thenReturn(Optional.empty());
 
-        assertThatThrownBy(() -> service.getProductByCategory("invalid"))
+        assertThatThrownBy(() -> queryService.getProductByCategory("invalid"))
                 .isInstanceOf(EntityNotFoundException.class);
     }
 
@@ -81,7 +85,7 @@ class ProductServiceTest {
         when(repository.findById(1L)).thenReturn(Optional.of(product));
         when(repository.findFirstCategoryNameByProductId(1L)).thenReturn(category.getName());
 
-        var sut = service.getProductById(1L);
+        var sut = queryService.getProductById(1L);
         assertEquals(product.getDescription(), sut.descriptions());
         assertEquals(product.getName(), sut.name());
         assertEquals(product.getSku(), sut.sku());
@@ -95,7 +99,7 @@ class ProductServiceTest {
     @Test
     void getProductById_WithInvalidData_ThrowsException() {
         when(repository.findById(1L)).thenReturn(Optional.empty());
-        assertThatThrownBy(() -> service.getProductById(1L))
+        assertThatThrownBy(() -> queryService.getProductById(1L))
                 .isInstanceOf(EntityNotFoundException.class);
     }
 
@@ -108,8 +112,7 @@ class ProductServiceTest {
                 "M", "http://image.com/img.png", List.of("img1", "img2"), category.getName()
         );
 
-        when(categoryRepository.existsByName(request.categoryName())).thenReturn(true);
-        when(categoryRepository.findByName(request.categoryName())).thenReturn(category);
+        when(categoryRepository.findByName(request.categoryName())).thenReturn(Optional.of(category));
         when(repository.save(any(Product.class))).thenAnswer(invocation -> {
             Product p = invocation.getArgument(0);
             p.setId(1L);
@@ -136,7 +139,7 @@ class ProductServiceTest {
                 "M", "http://image.com/img.png", List.of("img1"), "Invalid"
         );
 
-        when(categoryRepository.existsByName(request.categoryName())).thenReturn(false);
+        when(categoryRepository.findByName(request.categoryName())).thenReturn(Optional.empty());
 
         assertThatThrownBy(() -> service.insert(request))
                 .isInstanceOf(EntityNotFoundException.class);
@@ -154,8 +157,7 @@ class ProductServiceTest {
         );
 
         when(repository.findById(1L)).thenReturn(Optional.of(oldProduct));
-        when(categoryRepository.existsByName(category.getName())).thenReturn(true);
-        when(categoryRepository.findByName(category.getName())).thenReturn(category);
+        when(categoryRepository.findByName(category.getName())).thenReturn(Optional.of(category));
         when(repository.save(oldProduct)).thenReturn(oldProduct);
 
         var sut = service.update(1L, request);

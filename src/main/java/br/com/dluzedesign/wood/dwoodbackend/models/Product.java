@@ -22,27 +22,10 @@ public class Product {
     @EqualsAndHashCode.Include
     private Long id;
 
-    @Column(name = "description", columnDefinition = "TEXT")
-    private String description;
-
     @Column(unique = true)
     private String name;
 
-    @Column(unique = true)
-    private Long sku;
-
-    @Column(unique = true)
-    private Long ean;
-
-    @Column(name = "size", columnDefinition = "TEXT")
-    private String size;
-
     private String imgUrl;
-
-    @ElementCollection
-    @CollectionTable(name = "product_images", joinColumns = @JoinColumn(name = "product_id"))
-    @Column(name = "image_url")
-    private List<String> listImgs;
 
     @ManyToMany(fetch = FetchType.EAGER)
     @JoinTable(name = "tb_product_category",
@@ -50,6 +33,10 @@ public class Product {
             inverseJoinColumns = @JoinColumn(name = "category_id"))
     @JsonIgnore
     private Set<Category> categories;
+
+    @OneToMany(mappedBy = "product", cascade = CascadeType.ALL, orphanRemoval = true)
+    private Set<ProductVariation> variations;
+
 
 
 }

@@ -7,6 +7,7 @@ import br.com.dluzedesign.wood.dwoodbackend.models.Category;
 import br.com.dluzedesign.wood.dwoodbackend.repositories.CategoryRepository;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
+import org.springframework.stereotype.Service;
 
 import java.util.Comparator;
 import java.util.List;
@@ -15,6 +16,7 @@ import java.util.stream.Collectors;
 import static br.com.dluzedesign.wood.dwoodbackend.exceptions.BaseErrorMessage.CATEGORY_NOT_FOUND;
 
 @Slf4j
+@Service
 @RequiredArgsConstructor
 public class CategoryQueryService implements ICategoryQueryService{
     private final CategoryRepository repository;
